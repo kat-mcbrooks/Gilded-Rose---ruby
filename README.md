@@ -1,6 +1,6 @@
 # Gilded rose tech test
 
-I have refactored the legacy code, provided in Ruby, of the gilded rose kata (developed by Terry Hughes). The aim of this project was to test my ability to read, refactor and extend legacy code.
+I have , provided in Ruby, of the gilded rose kata (developed by Terry Hughes). The aim of this project refactored the legacy codewas to test my ability to read, refactor and extend legacy code.
 
 ### My approach to structuring the code: 
 * Gilded Rose class has only two public methods: update_quality and reduce_sell_in. I considered creating a '
