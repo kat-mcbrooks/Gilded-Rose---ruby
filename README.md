@@ -6,6 +6,16 @@ I have , provided in Ruby, of the gilded rose kata (developed by Terry Hughes). 
 * Gilded Rose class has only two public methods: update_quality and reduce_sell_in. I considered creating a '
 * I deliberately chose to use the .include? method to check the names of items, because it read to me as if the items were categories of items and I felt this approach would allow more flexibility if the inn began selling other types of aged brie, sulfuras items, backstage passes or conjured items, which adhered to the same quality changes
 * Item class remains unchanged, per the brief
+* Requirements, which I have extracted from the brief form the basis of my tests:
+   - At the end of the day, the system lowers sell_in value and updates the quality value for every item
+   - Unless the item falls into one of the 'special' item categories as listed below, the quality decreases each day
+   - Once the sell by date has passed, Quality degrades twice as fast
+   - The Quality of an item is never negative
+   - “Aged Brie” actually increases in Quality the older it gets
+   - The Quality of an item is never more than 50
+   - “Sulfuras”, being a legendary item, never has to be sold or decreases in Quality
+   - “Backstage passes”, like aged brie, increases in Quality as it’s `SellIn` value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
+   - “Conjured” items degrade in Quality twice as fast as normal items
 
 ### Assumptions
 There were a few assumptions I had to make in order to complete this challenge:
@@ -16,7 +26,7 @@ There were a few assumptions I had to make in order to complete this challenge:
 "Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a
 legendary item and as such its Quality is 80 and it never alters."
 
-### How to run the Bank code via irb
+### How to run the code via irb
 1. Install dependencies by running bundle install
 2. Open irb, or your chosen REPL, loading the file:
 ``` irb -r './lib/gilded_rose.rb' ```
@@ -29,7 +39,7 @@ legendary item and as such its Quality is 80 and it never alters."
 GildedRose.new(items)
 5. Each day, run the update_quality and reduce_sell_in methods. If you forgot to run either of these one day, you will need to run them twice the next day to account for the missed day.
 
-See the following example of how to use the program: 
+**See the following example of how to use the program:** 
 ```
 3.1.1 :001 > items = [Item.new(name="Elixir of the Mongoose", sell_in= 5, quality=7), Item.new(name="Sulfuras, Hand of Ragnaros", sell
 _in=0, quality=80),Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in = 15, quality=20),Item.new(name="Conjured Mana C
