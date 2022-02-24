@@ -1,4 +1,5 @@
 require './lib/item' 
+
 class GildedRose
 MAX_QUALITY = 50
 MIN_QUALITY = 0
@@ -7,6 +8,12 @@ attr_reader :items
 
   def initialize(items)
     @items = items #must be an array because we can iterate on it?
+  end
+
+  def update_quality()
+    @items.each do |item|
+      check_name(item)
+    end
   end
 
   def reduce_sell_in
@@ -23,7 +30,7 @@ attr_reader :items
       update_backstage(item)
       check_limits(item)
       return
-    elsif item.name.downcase == "aged brie"
+    elsif item.name.downcase.include?("aged brie")
       update_brie(item)
       check_limits(item)
       return
@@ -78,11 +85,5 @@ attr_reader :items
       item.quality = MAX_QUALITY
     end
   end  
-
-  def update_quality()
-    @items.each do |item|
-      check_name(item)
-    end
-  end
 
 end

@@ -1,10 +1,10 @@
 require 'item'
 
 describe Item do
-  it "has min quality of 0" do
-    items = [Item.new("foo", 0, 0)]
-    GildedRose.new(items).update_quality()
-    expect(items[0].name).to eq "fixme"
+  item = Item.new("aged brie", 5, 6)
+
+  it 'can print its name, sell in and quality' do 
+    expect(item.to_s).to eq "aged brie, 5, 6"
   end
 
 end
