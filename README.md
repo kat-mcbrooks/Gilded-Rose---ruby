@@ -2,6 +2,62 @@
 
 I have refactored the legacy code, provided in Ruby, of the gilded rose kata (developed by Terry Hughes). The aim of this project was to test my ability to read, refactor and extend legacy code.
 
+### My approach to structuring the code: 
+* Gilded Rose class has only two public methods: update_quality and reduce_sell_in. I considered creating a '
+* I deliberately chose to use the .include? method to check the names of items, because it read to me as if the items were categories of items and I felt this approach would allow more flexibility if the inn began selling other types of aged brie, sulfuras items, backstage passes or conjured items, which adhered to the same quality changes
+* Item class remains unchanged, per the brief
+
+### Assumptions
+There were a few assumptions I had to make in order to complete this challenge:
+* As there is nothing explicitly stating by how much Aged Brie increases in quality, I have assumed that it continues increasing at a rate of 1 each day
+* As there is nothing explicitly stating how the quality of Aged Brie changes after sell_in date, I have assumed that it continues increasing at a rate of 1
+* I have assumed that 'when sell_in date has passed' means 'when sell_in date is negative'
+* I found this additional information within the 'GildedRoseRequirements.txt' regarding Sulfuras, and therefore have ensured it is excluded from the check_limits method:
+"Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a
+legendary item and as such its Quality is 80 and it never alters."
+
+### How to run the Bank code via irb
+1. Install dependencies by running bundle install
+2. Open irb, or your chosen REPL, loading the file:
+``` irb -r './lib/gilded_rose.rb' ```
+3. Instantiate items, providing three parameters: 
+   * name (a string)
+   * sell_in (an integer, which is negative if the item is passed its sell_in date)
+   * quality (a postive integer)
+``` item = Item.new("aged brie", 5, 6) ```
+4. Instantiate a GildedRose, passing an array of items: 
+GildedRose.new(items)
+5. Each day, run the update_quality and reduce_sell_in methods. If you forgot to run either of these one day, you will need to run them twice the next day to account for the missed day.
+
+See the following example of how to use the program: 
+```
+3.1.1 :001 > items = [Item.new(name="Elixir of the Mongoose", sell_in= 5, quality=7), Item.new(name="Sulfuras, Hand of Ragnaros", sell
+_in=0, quality=80),Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in = 15, quality=20),Item.new(name="Conjured Mana C
+ake", sell_in=3, quality=6), Item.new(name= "aged brie" , sell_in= - 1, quality = 7)]
+3.1.1 :002 > items
+ => 
+[#<Item:0x0000000103035580 @name="Elixir of the Mongoose", @quality=7, @sell_in=5>, 
+ #<Item:0x0000000103035468 @name="Sulfuras, Hand of Ragnaros", @quality=80, @sell_in=0>,
+ #<Item:0x0000000103035378 @name="Backstage passes to a TAFKAL80ETC concert", @quality=20, @sell_in=15>,
+ #<Item:0x0000000103035300 @name="Conjured Mana Cake", @quality=6, @sell_in=3>,     
+ #<Item:0x00000001030351e8 @name="aged brie", @quality=7, @sell_in=-1>]   
+3.1.1 :003 > gilded_rose = GildedRose.new(items)  
+3.1.1 :004 > gilded_rose.update_quality
+ => 
+[#<Item:0x0000000103035580 @name="Elixir of the Mongoose", @quality=6, @sell_in=5>,
+ #<Item:0x0000000103035468 @name="Sulfuras, Hand of Ragnaros", @quality=80, @sell_in=0>,
+ #<Item:0x0000000103035378 @name="Backstage passes to a TAFKAL80ETC concert", @quality=21, @sell_in=15>,
+ #<Item:0x0000000103035300 @name="Conjured Mana Cake", @quality=4, @sell_in=3>,
+ #<Item:0x00000001030351e8 @name="aged brie", @quality=8, @sell_in=-1>] 
+3.1.1 :005 > gilded_rose.reduce_sell_in
+ => 
+[#<Item:0x0000000103035580 @name="Elixir of the Mongoose", @quality=6, @sell_in=4>,
+ #<Item:0x0000000103035468 @name="Sulfuras, Hand of Ragnaros", @quality=80, @sell_in=-1>,
+ #<Item:0x0000000103035378 @name="Backstage passes to a TAFKAL80ETC concert", @quality=21, @sell_in=14>,
+ #<Item:0x0000000103035300 @name="Conjured Mana Cake", @quality=4, @sell_in=2>,
+ #<Item:0x00000001030351e8 @name="aged brie", @quality=8, @sell_in=-2>] 
+```
+
 ### Text from the kata
 
 *"Hi and welcome to team Gilded Rose. As you know, we are a small inn with a prime location in a prominent city run by a friendly innkeeper named Allison. We also buy and sell only the finest goods. Unfortunately, our goods are constantly degrading in quality as they approach their sell by date. We have a system in place that updates our inventory for us. It was developed by a no-nonsense type named Leeroy, who has moved on to new adventures. Your task is to add the new feature to our system so that we can begin selling a new category of items. First an introduction to our system:
