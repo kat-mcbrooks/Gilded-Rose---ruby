@@ -21,6 +21,7 @@ I have , provided in Ruby, of the gilded rose kata (developed by Terry Hughes). 
 There were a few assumptions I had to make in order to complete this challenge:
 * As there is nothing explicitly stating by how much Aged Brie increases in quality, I have assumed that it continues increasing at a rate of 1 each day
 * As there is nothing explicitly stating how the quality of Aged Brie changes after sell_in date, I have assumed that it continues increasing at a rate of 1
+* As there is nothing explicitly stating the rate at which quality of backstage items changes with sell_in greater than 10 days, I have assumed that it increases at a rate of 1
 * I have assumed that 'when sell_in date has passed' means 'when sell_in date is negative'
 * I found this additional information within the 'GildedRoseRequirements.txt' regarding Sulfuras, and therefore have ensured it is excluded from the check_limits method:
 "Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a

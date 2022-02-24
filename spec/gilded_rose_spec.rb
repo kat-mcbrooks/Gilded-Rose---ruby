@@ -5,27 +5,28 @@ describe GildedRose do
   min_quality = GildedRose::MIN_QUALITY
 
   items = [
-    Item.new(name="+5 Dexterity Vest", sell_in=10, quality=20),
-    Item.new(name="Aged Brie", sell_in=2, quality=0),
-    Item.new(name="Elixir of the Mongoose", sell_in= 5, quality=7), 
-    Item.new(name="Sulfuras, Hand of Ragnaros", sell_in=0, quality=80),
-    Item.new(name="Sulfuras, Hand of Ragnaros", sell_in=-1, quality=80), 
-    Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in = 15, quality=20),
-    Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in = 10, quality=49),
-    Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in = 5, quality=49),
-    Item.new(name="Conjured Mana Cake", sell_in=3, quality=6),
-    Item.new(name="Conjured Mana Cake", sell_in=3, quality=1), 
-    Item.new(name="general item", sell_in= - 1, quality = 7),
-    Item.new(name= "aged brie" , sell_in= - 1, quality = 7), 
-    Item.new(name= "Conjured Mana Cake", sell_in = -1 , quality = 6), 
-    Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=46),
-    Item.new(name="Backstage passes to a TAFKAL80ETC concert", sell_in = -1, quality=46),
+    Item.new(name = "+5 Dexterity Vest", sell_in = 10, quality = 20),
+    Item.new(name = "Aged Brie", sell_in=2, quality = 0 ),
+    Item.new(name = "Elixir of the Mongoose", sell_in = 5, quality = 7), 
+    Item.new(name = "Sulfuras, Hand of Ragnaros", sell_in = 0, quality = 80),
+    Item.new(name = "Sulfuras, Hand of Ragnaros", sell_in = -1, quality = 80), 
+    Item.new(name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 15, quality = 0),
+    Item.new(name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 10, quality = 46),
+    Item.new(name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 5, quality = 49),
+    Item.new(name = "Conjured Mana Cake", sell_in = 3, quality = 6),
+    Item.new(name = "Conjured Mana Cake", sell_in = 3, quality = 1), 
+    Item.new(name = "general item", sell_in = - 1, quality = 7),
+    Item.new(name = "aged brie" , sell_in = - 1, quality = 7), 
+    Item.new(name = "Conjured Mana Cake", sell_in = -1 , quality = 6), 
+    Item.new(name = "Backstage passes to a TAFKAL80ETC concert", sell_in = 5, quality = 46),
+    Item.new(name = "Backstage passes to a TAFKAL80ETC concert", sell_in = -1, quality = 46),
   ]
   #subject(:gilded_rose) {described_class.new(items)}
   gilded_rose = GildedRose.new(items)
 
   describe "#update_quality" do
     gilded_rose.update_quality
+    
     it "does not change the name" do
       expect(gilded_rose.items[0].name).to eq "+5 Dexterity Vest"
     end
@@ -76,7 +77,7 @@ describe GildedRose do
       expect(gilded_rose.items[13].quality).to eq 49
     end
     it 'increases backstage quality by 2 when sell_in is between 6 and 10 days' do 
-      expect(gilded_rose.items[13].quality).to eq 49
+      expect(gilded_rose.items[6].quality).to eq 48
     end
     it 'drops quality to 0 after sell in date' do #	Quality drops to 0 after the concert
       gilded_rose.items[14]
@@ -93,7 +94,32 @@ describe GildedRose do
     it 'reduces sell_in of items by one' do
       expect(gilded_rose_3.items[1].sell_in).to eq 1
     end
+  end
 
+   # Approvals / checks that refactoring legacy code does not produce undesirable behavior
+   describe "#Approvals" do
+   it 'is characterized' do  
+     verify do
+       names = [
+         'Aged Brie',
+         "Backstage passes to a TAFKAL80ETC concert",
+         "Sulfuras, Hand of Ragnaros",
+         "Conjured Item",
+         'Any Other Item'
+       ]
+       sell_ins = [-1, 0, 1, 5, 6, 7, 10, 11, 12] # cross products for every type of case
+       qualities = [-1, 0, 1, 49, 50, 51]         # for max coverage
+
+       items = names.product(sell_ins, qualities).map { |(name, sell_in, quality)|
+         Item.new(name, sell_in, quality)
+       }
+       gilded_rose = GildedRose.new(items)
+
+       gilded_rose.update_quality
+
+       gilded_rose.items.map(&:to_s)
+     end
+   end
   end
 
 end
