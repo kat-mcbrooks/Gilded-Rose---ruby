@@ -15,6 +15,7 @@ attr_reader :items
     end
   end
 
+  private
   def check_name(item)
     if item.name.downcase.include?("sulfuras")
       return #do not update quality
@@ -49,26 +50,26 @@ attr_reader :items
     item.quality += 1
   end
 
-def update_backstage(item)
-  case item.sell_in
-  when - Float::INFINITY..0
-    item.quality = 0
-  when 0..5
-    item.quality += 3
-  when 6..10
-    item.quality += 2
-  else
-    item.quality += 1
+  def update_backstage(item)
+    case item.sell_in
+    when - Float::INFINITY..0
+      item.quality = 0
+    when 0..5
+      item.quality += 3
+    when 6..10
+      item.quality += 2
+    else
+      item.quality += 1
+    end
   end
-end
 
-def update_conjured(item)
-  if item.sell_in < 0 
-    item.quality -= 4
-  else
-    item.quality -= 2
+  def update_conjured(item)
+    if item.sell_in < 0 
+      item.quality -= 4
+    else
+      item.quality -= 2
+    end
   end
-end
 
   def check_limits(item)
     if item.quality < MIN_QUALITY
