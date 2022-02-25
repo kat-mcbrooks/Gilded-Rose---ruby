@@ -3,7 +3,7 @@
 I have , provided in Ruby, of the gilded rose kata (developed by Terry Hughes). The aim of this project refactored the legacy codewas to test my ability to read, refactor and extend legacy code.
 
 ### My approach to structuring the code: 
-* Gilded Rose class has only two public methods: update_quality and reduce_sell_in. I considered creating a '
+* Gilded Rose class has only two public methods: update_quality and reduce_sell_in. I considered creating a 'end_day' method or similar which would call on the update_quality and reduce_sell_in methods, but in the end decided keeping both update_quality and reduce_sell_in as public methods was a more flexible approach.
 * I deliberately chose to use the .include? method to check the names of items, because it read to me as if the items were categories of items and I felt this approach would allow more flexibility if the inn began selling other types of aged brie, sulfuras items, backstage passes or conjured items, which adhered to the same quality changes
 * Item class remains unchanged, per the brief
 * Requirements, which I have extracted from the brief form the basis of my tests:
