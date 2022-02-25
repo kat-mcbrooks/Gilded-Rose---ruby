@@ -68,6 +68,22 @@ ake", sell_in=3, quality=6), Item.new(name= "aged brie" , sell_in= - 1, quality 
  #<Item:0x0000000103035300 @name="Conjured Mana Cake", @quality=4, @sell_in=2>,
  #<Item:0x00000001030351e8 @name="aged brie", @quality=8, @sell_in=-2>] 
 ```
+### How to run the tests (rspec) and linters (rubocop): 
+Install all dependencies within the project directory, per the gemfile: 
+```
+bundle install;
+```
+``` 
+rspec
+rspec spec/gilded_rose_spec.rb
+rspec spec/item_spec.rb
+```
+Simplecov does not seem to run. I'm not sure why as I've included it in the gemfile and ran bundle install so unfortunately I can't see test coverage. 
+
+To run rubocop: 
+```
+rubocop
+```
 
 ### Text from the kata
 
