@@ -13,6 +13,7 @@ attr_reader :items
   def update_quality()
     @items.each do |item|
       check_name(item)
+      check_limits(item) unless item.name.downcase.include?("sulfuras")
     end
   end
 
@@ -28,19 +29,15 @@ attr_reader :items
       return #do not update quality
     elsif item.name.downcase.include?("backstage passes")
       update_backstage(item)
-      check_limits(item)
       return
     elsif item.name.downcase.include?("aged brie")
       update_brie(item)
-      check_limits(item)
       return
     elsif item.name.downcase.include?("conjured")
       update_conjured(item)
-      check_limits(item)
       return
     else 
       decrease_quality(item)
-      check_limits(item)
       return
     end
   end
