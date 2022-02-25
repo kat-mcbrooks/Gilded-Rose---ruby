@@ -6,8 +6,8 @@ MIN_QUALITY = 0
 
 attr_reader :items
 
-  def initialize(items)
-    @items = items #must be an array because we can iterate on it?
+  def initialize(items = [])
+    @items = items 
   end
 
   def update_quality()
