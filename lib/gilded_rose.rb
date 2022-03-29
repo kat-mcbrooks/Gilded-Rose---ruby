@@ -17,6 +17,7 @@ attr_reader :items
     end
   end
 
+  def
   def reduce_sell_in
     @items.each do |item|
       item.sell_in -= 1
@@ -54,18 +55,18 @@ attr_reader :items
     item.quality += 1
   end
 
-  def update_backstage(item)
-    case item.sell_in
-    when - Float::INFINITY..0
-      item.quality = 0
-    when 0..5
-      item.quality += 3
-    when 6..10
-      item.quality += 2
-    else
-      item.quality += 1
-    end
-  end
+  # def update_backstage(item)
+  #   case item.sell_in
+  #   when - Float::INFINITY..0
+  #     item.quality = 0
+  #   when 0..5
+  #     item.quality += 3
+  #   when 6..10
+  #     item.quality += 2
+  #   else
+  #     item.quality += 1
+  #   end
+  # end
 
   def update_conjured(item)
     if item.sell_in < 0 
