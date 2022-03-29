@@ -1,6 +1,6 @@
 require 'conjured'
 describe Conjured do 
-  max_quality = Conjured::MAX_QUALITY
+
   subject(:conjured) { described_class.new(15, 20) }
   it 'quality decreases by 2 before sell_in date' do 
     conjured.update_quality
