@@ -7,6 +7,7 @@ class Conjured < Item
     @quality = quality
   end
   def update_quality
+    return if quality <= 0
     if @sell_in < 0 
       @quality -= 4
     else
