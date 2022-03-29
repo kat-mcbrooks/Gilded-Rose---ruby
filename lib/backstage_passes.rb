@@ -1,11 +1,12 @@
 require_relative 'item.rb'
 class BackstagePass < Item
-  def initialize(name = "Backstage pass", sell_in, quality )
+  def initialize(name = "Backstage Pass", sell_in, quality )
     @name = name
     @sell_in = sell_in
     @quality = quality
   end
   def update_quality
+    return if @quality = 50 
     case @sell_in
     when - Float::INFINITY..0
       @quality = 0

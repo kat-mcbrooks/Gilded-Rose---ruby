@@ -1,9 +1,6 @@
 require 'sulfuras'
 describe Sulfuras do 
-  it 'has default name sulfuras' do 
-    expect(subject.name).to eq 'Sulfuras'
-  end
-  it 'has sell_in of infinity' do 
-    expect(subject.sell_in).to eq Float::INFINITY
+  it 'has sell_in of infinity, quality 80 and default name Sulfuras' do 
+    expect(subject.to_s).to eq "Sulfuras, Infinity, 80"
   end 
 end
