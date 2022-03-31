@@ -2,22 +2,14 @@ require 'gilded_rose'
 require 'regular_item'
 require 'backstage_passes'
 describe GildedRose do
-  let(:regular_item) { double(:regular_item, sell_in: 5) }
-  let(:sulfuras_item) { double(:sulfuras_item) }
-  before do 
-    allow(regular_item).to receive(:update_quality)
-    allow(sulfuras_item).to receive(:update_quality)
-    allow(regular_item).to receive(:reduce_sell_in)
-    allow(sulfuras_item).to receive(:reduce_sell_in)
-  end
+
   describe "#update_items_quality" do
   let(:regular_item) { double(:regular_item, sell_in: 5) }
-  let(:sulfuras_item) { double(:sulfuras_item) }
+  let(:conjured_item) { double(:conjured_item) }
   before do 
     allow(regular_item).to receive(:update_quality)
-    allow(sulfuras_item).to receive(:update_quality)
-    allow(regular_item).to receive(:reduce_sell_in)
-    allow(sulfuras_item).to receive(:reduce_sell_in)
+    allow(conjured_item).to receive(:reduce_sell_in)
+
   end
     it 'updates regular item quality' do 
       expect(regular_item).to receive(:update_quality)
@@ -25,9 +17,9 @@ describe GildedRose do
       gilded_rose.update_items_quality
     end
     it 'updates all items quality' do 
-      expect(sulfuras_item).to receive(:update_quality) 
+      expect(conjured_item).to receive(:update_quality) 
       expect(regular_item).to receive(:update_quality) #not supposed to have two expects in one test, but otherwise not sure how to test that it's updating all items within the items array
-      gilded_rose = GildedRose.new([regular_item, sulfuras_item])
+      gilded_rose = GildedRose.new([regular_item, conjured_item])
       gilded_rose.update_items_quality
     end
   end
