@@ -1,9 +1,9 @@
 # Gilded rose tech test
 
-[My approach](#My-approach-to-structuring-the-code) |
-[Assumptions](#Assumptions) |
-[How to run the program, with example](#How-to-run-the-code-via-IRB) |
-[How to run the tests](<#How-to-run-the-tests-(rspec)-and-linters-(rubocop):>) |
+[My approach](#my-approach-to-structuring-the-code) |
+[Assumptions](#assumptions) |
+[How to run the program, with example](#how-to-run-the-code-via-irb) |
+[How to run the tests](#how-to-run-the-tests-and-linter) |
 [Requirements/original Kata text](#text-from-the-kata)
 
 I have refactored, using Ruby and RSpec, the gilded rose kata (developed by Terry Hughes). The aim of this project refactored the legacy codewas to test my ability to read, refactor and extend legacy code.
@@ -81,7 +81,7 @@ ake", sell_in=3, quality=6), Item.new(name= "aged brie" , sell_in= - 1, quality 
  #<Item:0x00000001030351e8 @name="aged brie", @quality=8, @sell_in=-2>]
 ```
 
-### How to run the tests (rspec) and linters (rubocop):
+### How to run the tests and linter
 
 Install all dependencies within the project directory, per the gemfile:
 
