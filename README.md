@@ -6,7 +6,7 @@
 [How to run the tests](#how-to-run-the-tests-and-linter) |
 [Requirements/original Kata text](#text-from-the-kata)
 
-I have refactored, using Ruby and RSpec, the gilded rose kata (developed by Terry Hughes). The aim of this project refactored the legacy codewas to test my ability to read, refactor and extend legacy code.
+I have refactored, using Ruby and RSpec, the gilded rose kata (developed by Terry Hughes). The aim of this project refactored the legacy code was to test my ability to read, refactor and extend legacy code. I focused on readbility, reusability and SOLID principles.
 
 ### My approach to structuring the code:
 
